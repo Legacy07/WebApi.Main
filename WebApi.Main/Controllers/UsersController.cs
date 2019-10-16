@@ -30,9 +30,10 @@ namespace LocalCommuter.WebAPI.Controllers
 
         // GET: api/Users/5
         [HttpGet]
-        public UserModel Get(Guid id)
+        [Route("api/[controller]/users/{username}/{password}")]
+        public UserModel Get(string userName, string password)
         {
-            var user = this.UserRepository.GetUser(id);
+            var user = this.UserRepository.GetUser(userName, password);
             return user;
         }
 

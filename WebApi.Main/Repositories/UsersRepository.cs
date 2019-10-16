@@ -8,7 +8,7 @@ namespace LocalCommuter.WebAPI.Repositories
 {
     public class UsersRepository : IUsersRepository
     {
-        public UserModel GetUser(Guid id)
+        public UserModel GetUser(string userName, string password)
         {
             throw new NotImplementedException();
         }

@@ -7,6 +7,6 @@ namespace LocalCommuter.WebAPI.Repositories
     {
         void SaveUser(UserModel userModel);
 
-        UserModel GetUser(Guid id);
+        UserModel GetUser(string userName, string password);
     }
 }
