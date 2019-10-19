@@ -1,5 +1,4 @@
-﻿using LocalCommuter.WebAPI.Models;
-using LocalCommuter.WebAPI.Repositories;
+﻿using LocalCommuter.WebAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using WebApi.Main.Models;
 
 namespace LocalCommuter.WebAPI.Controllers
 {
@@ -25,23 +25,24 @@ namespace LocalCommuter.WebAPI.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "user1", "user2" };
         }
 
         // GET: api/Users/5
         [HttpGet]
-        [Route("api/[controller]/users/{username}/{password}")]
-        public UserModel Get(string userName, string password)
+        [Route("{username}")]
+        public UserDetails Get(string username, string password)
         {
-            var user = this.UserRepository.GetUser(userName, password);
+            var user = this.UserRepository.GetUser(username, password);
             return user;
         }
 
         // POST: api/Users
         [HttpPost]
-        public void Post([FromBody]UserModel userModel)
+        public void Post([FromBody]UserModel user)
         {
-            this.UserRepository.SaveUser(userModel);
+            user.Id = Guid.NewGuid();
+            this.UserRepository.SaveUser(user);
         }
 
         // PUT: api/Users/5

@@ -1,13 +1,13 @@
-﻿using System;
-
-namespace LocalCommuter.WebAPI.Models
+﻿namespace WebApi.Main.Models
 {
+    using System;
+
     public class UserModel
     {
-        Guid Id { get; set; }
-        string Username { get; set; }
-        string Password { get; set; }
-        string Email { get; set; }
+        public Guid Id { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
 
         public UserModel(Guid id, string username, string password, string email)
         {

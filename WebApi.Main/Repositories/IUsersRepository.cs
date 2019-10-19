@@ -1,5 +1,4 @@
-﻿using LocalCommuter.WebAPI.Models;
-using System;
+﻿using WebApi.Main.Models;
 
 namespace LocalCommuter.WebAPI.Repositories
 {
@@ -7,6 +6,6 @@ namespace LocalCommuter.WebAPI.Repositories
     {
         void SaveUser(UserModel userModel);
 
-        UserModel GetUser(string userName, string password);
+        UserDetails GetUser(string userName, string password);
     }
 }
