@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
 using LocalCommuter.WebAPI.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +32,8 @@ namespace WebApi.Main
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IUsersRepository, UsersRepository>();
+
+            this.ConfigureAutoMapper(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +56,16 @@ namespace WebApi.Main
 
             app.UseHttpsRedirection();
             app.UseMvc();
+        }
+
+        private void ConfigureAutoMapper(IServiceCollection services)
+        {
+            var assemblies = new List<Assembly>()
+            {
+                this.GetType().Assembly,
+                typeof(MappingProfile).Assembly
+            };
+            services.AddAutoMapper(assemblies);
         }
     }
 }

@@ -13,10 +13,10 @@ namespace Database
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MainDataBaseEntities : DbContext
+    public partial class SecurityUsersDbEntities : DbContext
     {
-        public MainDataBaseEntities()
-            : base("name=MainDataBaseEntities")
+        public SecurityUsersDbEntities()
+            : base("SecurityUsersDbEntities")
         {
         }
     

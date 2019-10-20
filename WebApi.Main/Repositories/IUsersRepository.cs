@@ -4,7 +4,7 @@ namespace LocalCommuter.WebAPI.Repositories
 {
     public interface IUsersRepository
     {
-        void SaveUser(UserModel userModel);
+        UserModel SaveUser(UserModel userModel);
 
         UserDetails GetUser(string userName, string password);
     }

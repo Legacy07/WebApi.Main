@@ -39,10 +39,26 @@ namespace LocalCommuter.WebAPI.Controllers
 
         // POST: api/Users
         [HttpPost]
-        public void Post([FromBody]UserModel user)
+        public HttpResponseMessage Post([FromBody]UserModel user)
         {
             user.Id = Guid.NewGuid();
-            this.UserRepository.SaveUser(user);
+            user.DateJoined = DateTime.UtcNow.Date;
+
+            var savedUser = this.UserRepository.SaveUser(user);
+
+            //get the response code of 201 for successful post and return the user
+            var message  = new HttpResponseMessage();
+            if(savedUser != null)
+            {
+                message = new HttpResponseMessage(HttpStatusCode.Created);
+                message.Headers.Location = new Uri(Request.Path + user.Id.ToString());
+            }
+            else
+            {
+                message = new HttpResponseMessage(HttpStatusCode.BadRequest);
+            }
+
+            return message;
         }
 
         // PUT: api/Users/5
