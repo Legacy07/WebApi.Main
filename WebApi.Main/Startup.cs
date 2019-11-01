@@ -31,7 +31,7 @@ namespace WebApi.Main
             services.AddCors();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<ISecurityRepository, SecurityRepository>();
 
             this.ConfigureAutoMapper(services);
         }

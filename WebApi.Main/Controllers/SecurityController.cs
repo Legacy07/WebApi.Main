@@ -13,12 +13,12 @@ namespace LocalCommuter.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class SecurityController : ControllerBase
     {
-        IUsersRepository UserRepository;
-        public UsersController(IUsersRepository usersRepository)
+        ISecurityRepository SecurityRepository;
+        public SecurityController(ISecurityRepository usersRepository)
         {
-            this.UserRepository = usersRepository;
+            this.SecurityRepository = usersRepository;
         }
 
         // GET: api/Users
@@ -33,7 +33,7 @@ namespace LocalCommuter.WebAPI.Controllers
         [Route("{username}")]
         public UserDetails Get(string username, string password)
         {
-            var user = this.UserRepository.GetUser(username, password);
+            var user = this.SecurityRepository.GetUser(username, password);
             return user;
         }
 
@@ -44,14 +44,13 @@ namespace LocalCommuter.WebAPI.Controllers
             user.Id = Guid.NewGuid();
             user.DateJoined = DateTime.UtcNow.Date;
 
-            var savedUser = this.UserRepository.SaveUser(user);
+            var savedUser = this.SecurityRepository.SaveUser(user);
 
-            //get the response code of 201 for successful post and return the user
             var message  = new HttpResponseMessage();
             if(savedUser != null)
             {
                 message = new HttpResponseMessage(HttpStatusCode.Created);
-                message.Headers.Location = new Uri(Request.Path + user.Id.ToString());
+                ////message.Headers.Location = new Uri(Request.Path + user.Id.ToString());
             }
             else
             {

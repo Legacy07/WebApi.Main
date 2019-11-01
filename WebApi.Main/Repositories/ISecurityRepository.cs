@@ -2,9 +2,9 @@
 
 namespace LocalCommuter.WebAPI.Repositories
 {
-    public interface IUsersRepository
+    public interface ISecurityRepository
     {
-        UserModel SaveUser(UserModel userModel);
+        string SaveUser(UserModel userModel);
 
         UserDetails GetUser(string userName, string password);
     }
