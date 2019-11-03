@@ -30,7 +30,7 @@ namespace LocalCommuter.WebAPI.Controllers
 
         // GET: api/Users/5
         [HttpGet]
-        [Route("{username}")]
+        [Route("{username}/{password}")]
         public UserDetails Get(string username, string password)
         {
             var user = this.SecurityRepository.GetUser(username, password);

@@ -9,9 +9,19 @@
 
     public class SecurityRepository : ISecurityRepository
     {
+
+        // inject usersrepository through constructor
+        public SecurityRepository()
+        {
+        }
+
         public UserDetails GetUser(string userName, string password)
         {
-            throw new NotImplementedException();
+            UsersRepository usersRepository = new UsersRepository();
+
+            var user = usersRepository.GetUser(userName, password);
+
+            return user;
         }
 
         public string SaveUser(UserModel user)
